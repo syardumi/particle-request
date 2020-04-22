@@ -1,0 +1,35 @@
+{
+  "name": "particle-request",
+  "version": "0.2.0",
+  "description": "",
+  "main": "particle.js",
+  "scripts": {
+    "codecov": "codecov",
+    "coverage": "npm run test && npm run codecov",
+    "test": "jest --no-cache ./*",
+    "watch": "jest --no-cache --watch ./*"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "particle-api-js": "8.3.0"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "modulePathIgnorePatterns": [
+      "package.json"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "7.9.0",
+    "@babel/preset-env": "7.9.5",
+    "@types/jest": "25.2.1",
+    "aws-sdk": "2.660.0",
+    "aws-sdk-mock": "5.1.0",
+    "babel-jest": "25.4.0",
+    "codecov": "3.6.5",
+    "jest": "25.4.0",
+    "prettier": "2.0.5"
+  }
+}
