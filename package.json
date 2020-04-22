@@ -2,14 +2,14 @@
   "name": "particle-request",
   "version": "0.2.0",
   "description": "",
-  "main": "particle.js",
+  "main": "src/particle.js",
   "scripts": {
     "codecov": "codecov",
     "coverage": "npm run test && npm run codecov",
     "test": "jest --no-cache ./*",
     "watch": "jest --no-cache --watch ./*"
   },
-  "author": "",
+  "author": "Steve Yardumian",
   "license": "MIT",
   "dependencies": {
     "particle-api-js": "8.3.0"
