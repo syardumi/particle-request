@@ -24,6 +24,27 @@ provider:
   runtime: nodejs12.x
   memorySize: 128
   timeout: 10
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "secretsmanager:*"
+        - "cloudformation:CreateChangeSet"
+        - "cloudformation:DescribeChangeSet"
+        - "cloudformation:DescribeStackResource"
+        - "cloudformation:DescribeStacks"
+        - "cloudformation:ExecuteChangeSet"
+        - "ec2:DescribeSecurityGroups"
+        - "ec2:DescribeSubnets"
+        - "ec2:DescribeVpcs"
+        - "kms:DescribeKey"
+        - "kms:ListAliases"
+        - "kms:ListKeys"
+        - "lambda:ListFunctions"
+        - "rds:DescribeDBClusters"
+        - "rds:DescribeDBInstances"
+        - "redshift:DescribeClusters"
+        - "tag:GetResources"
+      Resource: '*'
   environment:
     STAGE: ${opt:stage, self:provider.stage}
 
@@ -45,4 +66,4 @@ functions:
       - http:
           path: particle/publishEvent
           method: post
-
+          cors: true

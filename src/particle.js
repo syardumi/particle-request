@@ -2,24 +2,24 @@
 'use strict'
 
 const Particle = require('particle-api-js')
-const particle = new Particle() 
+const particle = new Particle()
 
 const AWS = require('aws-sdk')
 
 module.exports.particlePublishEvent = async (event, context, callback) => {
 
 	const sm = new AWS.SecretsManager()
-    
+
     try{
 		let bodyJson = JSON.parse(event.body)
-		
+
 		let authData = await sm.getSecretValue({ SecretId: bodyJson.secretId }).promise()
 		let secretStr = JSON.parse(authData.SecretString)
 
 		return await particle.login({username: secretStr.username, password: secretStr.password})
 			.then(async (data) => {
 				let token = data.body.access_token
-				
+
 				return await particle.publishEvent({ name: bodyJson.action, data: bodyJson.params, auth: token })
 					.then((data) => {
 						return {
@@ -44,7 +44,7 @@ module.exports.particlePublishEvent = async (event, context, callback) => {
 					body: JSON.stringify(err),
 				}
 			})
-        
+
     }catch(error) {
         return {
 			statusCode: 400,
